@@ -1,0 +1,29 @@
+{
+  "name": "honey",
+  "main": "index.js",
+  "version": "0.0.4",
+  "description": "Honeycomb Util",
+  "author": {
+    "name": "继风",
+    "email": "jifeng.zjd@alibaba-inc.com"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "homepage": "http://gitlab.taobao.ali.com/honeycomb/honey",
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.alibaba-inc.com:honeycomb/honey.git"
+  },
+  "bugs": {
+    "url": "http://gitlab.taobao.ali.com/honeycomb/honey/issues"
+  },
+  "dependencies": {
+    "mocha": "*",
+    "expect.js": "*",
+    "jscover": "*",
+    "coffee-script": "*"
+  },
+  "devDependencies": {
+  }
+}
