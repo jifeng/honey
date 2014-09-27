@@ -1,7 +1,7 @@
 {
   "name": "honey",
   "main": "index.js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Honeycomb Util",
   "author": {
     "name": "继风",
@@ -22,7 +22,8 @@
     "mocha": "*",
     "expect.js": "*",
     "jscover": "*",
-    "coffee-script": "*"
+    "coffee-script": "*",
+    "options-stream": "*"
   },
   "devDependencies": {
   }
