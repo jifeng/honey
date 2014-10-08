@@ -1,5 +1,7 @@
 var coffee = require('coffee-script');
-coffee.register();
+if (coffee.register) {
+  coffee.register();
+}
 if (require.extensions['.coffee']) {
   module.exports = require('./lib/util.js');
 } else {
