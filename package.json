@@ -1,7 +1,7 @@
 {
   "name": "honey",
   "main": "index.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Honeycomb Util",
   "author": {
     "name": "继风",

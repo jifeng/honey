@@ -42,4 +42,30 @@ exports.randRequestId = () ->
     requestId = requestId.substring(0, 32)
   return requestId
 
-  
+exports.rmdir = (dir, cb=->) ->
+  return cb new Error 'Directory can not be found' unless fs.existsSync dir
+
+  list = []
+  stat = fs.statSync dir
+  iterator = (dir) ->
+    files = fs.readdirSync dir
+    for file in files
+      f = path.join dir, file
+      if fs.statSync(f).isDirectory()
+        list.unshift f
+        iterator f
+      else
+        fs.unlinkSync f
+    return
+
+  try
+    if stat.isDirectory()
+      list.push dir
+      iterator dir
+      for d in list
+        fs.rmdirSync d # 一次性删除所有收集到的目录
+    else
+      fs.unlinkSync dir
+  catch e
+    return cb e
+  cb()

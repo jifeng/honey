@@ -78,3 +78,45 @@ exports.randRequestId = function() {
   }
   return requestId;
 };
+
+exports.rmdir = function(dir, cb) {
+  var d, e, iterator, list, stat, _i, _len;
+  if (cb == null) {
+    cb = function() {};
+  }
+  if (!fs.existsSync(dir)) {
+    return cb(new Error('Directory can not be found'));
+  }
+  list = [];
+  stat = fs.statSync(dir);
+  iterator = function(dir) {
+    var f, file, files, _i, _len;
+    files = fs.readdirSync(dir);
+    for (_i = 0, _len = files.length; _i < _len; _i++) {
+      file = files[_i];
+      f = path.join(dir, file);
+      if (fs.statSync(f).isDirectory()) {
+        list.unshift(f);
+        iterator(f);
+      } else {
+        fs.unlinkSync(f);
+      }
+    }
+  };
+  try {
+    if (stat.isDirectory()) {
+      list.push(dir);
+      iterator(dir);
+      for (_i = 0, _len = list.length; _i < _len; _i++) {
+        d = list[_i];
+        fs.rmdirSync(d);
+      }
+    } else {
+      fs.unlinkSync(dir);
+    }
+  } catch (_error) {
+    e = _error;
+    return cb(e);
+  }
+  return cb();
+};
