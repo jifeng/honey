@@ -1,7 +1,7 @@
 fs      = require 'fs'
 path    = require 'path'
 crypto  = require 'crypto'
-
+mkdirp  = require("mkdirp").sync
 
 # file => file.coffee / file.js 
 exports.realAllFilename = (file) ->
@@ -69,3 +69,10 @@ exports.rmdir = (dir, cb=->) ->
   catch e
     return cb e
   cb()
+
+exports.mkdirp = (dirpath, mode="0755") ->
+  if not fs.existsSync(dirpath)
+    mkdirp dirpath, mode
+  else if not fs.statSync(dirpath).isDirectory()
+    throw new Error "#{dirpath} is not a directory."
+  return
